@@ -26,7 +26,7 @@ console.log(isPalindrome("Hello")); // false
 // Then we check like before using reverse.
 
 /****** Alternate version ******/
-// Check for palindrome without split, reverse, join
+// Check for palindrome without split(), reverse(), join()
 function isPalindrome(str) {
   const len = str.length;
   for (let i = 0; i < len / 2; i++) {

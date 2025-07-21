@@ -9,7 +9,7 @@ console.log(reversed); // Output: "olleh"
 // join(""): Combines the array back into a string → "olleh"
 
 /****** Alternate version ******/
-// Reverse a string without split, reverse, join
+// Reverse a string without split(), reverse(), join()
 const input = "hello";
 let reversed = ""; //New String
 for(let i=input.length-1; i>=0; i--) {
