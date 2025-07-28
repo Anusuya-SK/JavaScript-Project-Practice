@@ -5,15 +5,6 @@
 // A deep clone means copying not just the top-level properties, but also nested objects/arrays,
 // recursively — so that changes to the clone do not affect the original.
 
-// | Feature        | `for...of`                        | `for...in`                                      |
-// | -------------- | --------------------------------- | ----------------------------------------------- |
-// | Iterates over  | **Values**                        | **Keys / Property names**                       |
-// | Use with       | Arrays, Strings, Sets, Maps, etc. | Objects and Arrays (not recommended for arrays) |
-// | Best for       | Reading values                    | Looping through object keys                     |
-// | Can be used on | **Iterable** objects              | **All** enumerable object properties            |
-// | Example use    | Loop through array values         | Loop through object properties                  |
-
-
 function deepClone(obj) {
   if (obj === null || typeof obj !== "object") return obj;
 
