@@ -20,3 +20,13 @@ console.log(reversed);
 // Start from the last character of the string.
 // Append each character to a new string (reversed) going backward
 // reversed += input[i]; => reversed = revresed+input[i]
+
+/****** Alternate version ******/
+const input = "hello";
+let reversed = ""; //New String
+for(let char of input) {
+    reversed = char + reversed;
+}
+console.log(reversed);
+
+// char is already a character from str, not an index. So doing str[char] tries to access a property like str["h"], str["e"], etc., which is undefined.
