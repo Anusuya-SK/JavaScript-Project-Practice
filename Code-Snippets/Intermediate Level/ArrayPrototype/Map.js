@@ -36,3 +36,28 @@ import { myMap } from './arrayUtils.js';
 
 const nums = [10, 20, 30];
 const doubled = myMap(nums, n => n * 2); // ✅ works
+
+/****** Alternate version ******/
+// ✅ 1. Using forEach()
+// (built-in .forEach() skips holes automatically like .map())
+Array.prototype.myMap = function(callback) {
+  const result = [];
+  this.forEach((value, index, array) => {
+    result.push(callback(value, index, array));
+  });
+  return result;
+};
+
+/****** Alternate version ******/
+// ✅ 2. Using for...in loop
+// (but need hasOwnProperty to avoid prototype keys)
+
+Array.prototype.myMap = function(callback) {
+  const result = [];
+  for (let i in this) {
+    if (this.hasOwnProperty(i)) {
+      result[i] = callback(this[i], Number(i), this);
+    }
+  }
+  return result;
+};
