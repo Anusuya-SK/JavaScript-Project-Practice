@@ -31,7 +31,7 @@ function countFrequency(str) {
   return str.split('').reduce((acc, char) => {
     acc[char] = (acc[char] || 0) + 1;
     return acc;
-  }, {});
+  }, {}); // {} defines the type of acc
 }
 console.log(countFrequency("apple")); // { a: 1, p: 2, l: 1, e: 1 }
 
