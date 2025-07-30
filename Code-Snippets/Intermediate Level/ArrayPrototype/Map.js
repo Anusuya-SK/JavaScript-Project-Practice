@@ -5,7 +5,7 @@ Array.prototype.myMap = function(callback) {
   for (let i = 0; i < this.length; i++) {
     // Skip holes in sparse arrays [1, , 3] => empty element called holes. .map, .forEach removes automatically
     if (this.hasOwnProperty(i)) {
-      result.push(callback(this[i], i, this));
+      result.push(callback(this[i], i, this)); // Callback returns the value
     }
   }
   return result;
