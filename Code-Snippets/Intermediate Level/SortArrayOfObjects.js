@@ -32,3 +32,30 @@ console.log(people);
 
 // b.age - a.age  →  25 - 30  →  -5 // decending
 // b.name.localeCompare(a.name) // decending
+
+/****** Alternate version ******/
+function insertionSortByAge(arr) {
+  const result = [...arr]; // avoid mutating original (avoid change in original)
+
+  for (let i = 1; i < result.length; i++) {
+    let current = result[i];
+    let j = i - 1;
+
+    while (j >= 0 && result[j].age > current.age) {
+      result[j + 1] = result[j];
+      j--;
+    }
+
+    result[j + 1] = current;
+  }
+
+  return result;
+}
+
+const people = [
+  { name: 'Alice', age: 32 },
+  { name: 'Bob', age: 25 },
+  { name: 'Charlie', age: 29 }
+];
+
+console.log(insertionSortByAge(people));
