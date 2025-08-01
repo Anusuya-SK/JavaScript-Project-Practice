@@ -1,0 +1,83 @@
+<!-- Debounced: only updates after 5000ms of no typing.
+Throttled: updates once every 5000ms while typing, even if you're still typing. -->
+
+<!-- | Feature      | Debounce                 | Throttle                  |
+| ------------ | ------------------------ | ------------------------- |
+| Fires on     | **after pause**          | **at intervals**          |
+| Good for     | Search, autosave, resize | Scroll, typing rate, drag |
+| In your case | Final stable result      | Early + periodic updates  | -->
+
+<!-- | Time (ms) | Typed Value | Throttled Fired?   | Debounced Fired?  |
+    | --------- | ----------- | ------------------ | ----------------- |
+    | 0         | `1`         | ✅                  | No                |
+    | 100       | `12`        | ❌ (cooldown)       | No                |
+    | 200       | `122`       | ❌                  | No                |
+    | 300       | `1222`      | ✅ (after cooldown) | No                |
+    | 800       | (Stopped)   | ✅ (after cooldown) | ✅ (500ms silence) | -->
+
+<!-- | Feature       | Triggers when...             | Good For                       |
+| ------------- | ----------------------------      | ------------------------------ |
+| `setTimeout`  | Once, after X ms(no care of input)| Simple delay                   |
+| `setInterval` | Every X ms (no care of input)     | Repeated updates (e.g., clock) |
+| **Debounce**  | After X ms of no input            | Search box, autosave           |
+| **Throttle**  | Once every X ms during input      | Scroll, drag, resize           | -->
+
+<!-- Debounce and Throttle are patterns that internally use setTimeout (or setInterval) to control how often a function runs. -->
+ 
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Debounce vs Throttle</title>
+  <style>
+    input { padding: 8px; width: 300px; }
+    .output { margin-top: 10px; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <h2>Typing Input (Debounce & Throttle)</h2>
+  <input type="text" id="textInput" placeholder="Type something..." />
+  <div class="output">
+    <p><strong>Debounced:</strong> <span id="debouncedOutput"></span></p>
+    <p><strong>Throttled:</strong> <span id="throttledOutput"></span></p>
+  </div>
+
+  <script>
+    function debounce(fn, delay) {
+      let timeout;
+      return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => fn.apply(this, args), delay);
+      };
+    }
+
+    function throttle(fn, limit) {
+      let inThrottle;
+      return function (...args) {
+        if (!inThrottle) {
+          fn.apply(this, args);
+          inThrottle = true;
+          setTimeout(() => (inThrottle = false), limit);
+        }
+      };
+    }
+
+    const input = document.getElementById("textInput");
+    const debouncedOutput = document.getElementById("debouncedOutput");
+    const throttledOutput = document.getElementById("throttledOutput");
+
+    const updateDebounced = debounce((text) => {
+      debouncedOutput.textContent = text;
+    }, 5000);
+
+    const updateThrottled = throttle((text) => {
+      throttledOutput.textContent = text;
+    }, 500);
+
+    input.addEventListener("input", (e) => {
+      const value = e.target.value;
+      updateDebounced(value);
+      updateThrottled(value);
+    });
+  </script>
+</body>
+</html>
