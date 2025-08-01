@@ -44,7 +44,8 @@
 // | `map()`       | Returns a **new array** with each item transformed  | `[1, 2, 3].map(x => x * 2)` → `[2, 4, 6]`    |
 // | `filter()`    | Returns a **new array** with items that pass a test | `[1, 2, 3].filter(x => x > 1)` → `[2, 3]`    |
 // | `reduce()`    | Returns **one value** by reducing the array. 
-//                   If add dependncy type, return result based on type  | `[1, 2, 3].reduce((a, b) => a + b, 0)` → `6` |
+//                   If add dependncy type, return result based 
+//                                                  on type like [], {}  | `[1, 2, 3].reduce((a, b) => a + b, 0)` → `6` Here 0 is initial value|
 // | `forEach()`   | Loops through each item (no return)                 | `arr.forEach(x => console.log(x))`           |
 // | `find()`      | Returns the **first** matching item                 | `[2, 4, 6].find(x => x > 3)` → `4`           |
 // | `findIndex()` | Returns the **index** of the match                  | `[1, 2, 3].findIndex(x => x === 2)` → `1`    |
