@@ -28,3 +28,19 @@ function removeDuplicates(arr) {
 
   return result;
 }
+
+/****** Alternate version ******/
+const removeDuplicates = (num) => {
+  const result = [];
+  for(let item of num){
+    // if(result.indexOf(item) === -1) {
+    //   result.push(item);
+    // }
+    if (!result.includes(item)) {
+      result.push(item);
+    }
+  }
+  return result;
+}
+
+// for(let item of num) -> item itself is the element like 2, 3, a, b
